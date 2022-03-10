@@ -40,7 +40,6 @@ exports.uploadProduct = (req, res) => {
             return Promise.all(
                 jsonObject.map(async (value) => {
                     var productCheck = await Product.find({ "product_ean": value.product_ean})
-                    console.log(productCheck)
                     if(productCheck.length > 0){
                         productCheck.map(async dataValue => {
                             if (dataValue.product_ean == value.product_ean) {
@@ -88,51 +87,6 @@ exports.uploadProduct = (req, res) => {
         getData().then(async () => {
             res.status(200).send("Product Created/Updated Successfully")
         })
-
-        // jsonObject.forEach(async value=>{
-        //    await Product.find({"product_ean":value.product_ean}).exec( function (err, productDetails) {
-        //          if(productDetails.length > 0){
-        //              productDetails.map(async dataValue=>{
-        //                  if(dataValue.product_ean == value.product_ean){
-        //                      console.log(value.product_ean)
-        //                      console.log(dataValue.product_ean)
-        //                    await Product.update({"product_ean":value.product_ean},{$set:{'product_ean':jsonObject.product_ean,'product_name':jsonObject.product_name,
-        //                     'qty':jsonObject.qty,
-        //                     'cost_perunit':jsonObject.cost_perunit,
-        //                     'selling_price':jsonObject.selling_price,
-        //                     'mrp':jsonObject.mrp,
-        //                     'total_cost':jsonObject.total_cost,'status':jsonObject.status
-        //                   }},(err, productValue) => {
-        //                       if (err) {
-        //                           res.status(500).send({ message: err });
-        //                           return;
-        //                         }
-        //                         res.send({ message: "Product Updated Successfully!", data: productValue });
-        //                     })
-        //                  }
-        //              })
-
-        //         }else{
-        //             const products = new Product({
-        //                 product_ean: value.product_ean,
-        //                 product_name: value.product_name,
-        //                 qty: value.qty,
-        //                 cost_perunit: value.cost_perunit,
-        //                 selling_price: value.selling_price,
-        //                 mrp : value.mrp,
-        //                 total_cost: value.total_cost
-        //               });
-        //               products.save((err, productData) => {
-        //                 if (err) {
-        //                     res.status(500).send({ message: err });
-        //                     return;
-        //                   }
-        //                   res.send({ message: "Product Created Successfully!", data: productData });
-        //             })
-        //         }
-        //     })
-
-        // })
     });
 }
 

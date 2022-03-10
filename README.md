@@ -1,6 +1,8 @@
 # purchase_portal
 
-To start the application run the command node server.js
+To start the application:
+            1.First run the command npm install
+            2.Then run node server.js
 
 
 Api list and their json request (From given task):
