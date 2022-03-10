@@ -1,5 +1,8 @@
 # purchase_portal
 
+To start the application run the command node server.js
+
+
 Api list and their json request (From given task):
 
 1. Register API          : http://localhost:8080/api/auth/signup (POST method)
