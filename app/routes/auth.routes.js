@@ -19,9 +19,13 @@ module.exports = function(app) {
     authController.signup
   );
   app.post("/api/auth/signin", authController.signin);
-  app.post("/api/createOrder", authJwt.verifyToken, orderController.createOrders);
-  app.post("/api/updateOrder", authJwt.verifyToken, orderController.updateOrders);
+  app.post("/api/createUpdateOrders", authJwt.verifyToken, orderController.createUpdateOrders);
+  app.post("/api/cancelOrders", authJwt.verifyToken, orderController.cancelOrders);
   app.get("/api/customerList", authJwt.verifyToken, orderController.customerList);
   app.post("/api/productCount", authJwt.verifyToken, orderController.productCount); 
-  app.post("/api/uploadProduct", authJwt.verifyToken, productController.uploadProduct);
+  app.post("/api/uploadProduct", authJwt.verifyToken, productController.uploadProduct); 
+  app.post("/api/orderedProducts", authJwt.verifyToken, orderController.orderedProducts); 
+  app.get("/api/getUsers", authJwt.verifyToken, authController.getUsers);
+  app.get("/api/getOrders", authJwt.verifyToken, orderController.getOrders);
+  app.get("/api/getProducts", authJwt.verifyToken, productController.getProducts);
 };

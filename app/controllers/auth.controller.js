@@ -4,6 +4,7 @@ const User = db.user;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
+// API to registration setup
 exports.signup = (req, res) => {
     const user = new User({
       username: req.body.username,
@@ -21,6 +22,7 @@ exports.signup = (req, res) => {
     })
 };
 
+// API to login 
 exports.signin = (req, res) => {
     User.findOne({
       username: req.body.username
@@ -53,4 +55,15 @@ exports.signin = (req, res) => {
             accessToken: token
           });
     })
+}
+// API to getUsers 
+exports.getUsers = (req,res)=>{
+  User.find().exec(function (err, userDetails) {
+    if(err){
+      res.status(500).send({ message: err });
+      return;
+    }else{
+      res.send({data: userDetails});
+    }
+  })
 }
